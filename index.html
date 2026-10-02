@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANoor — Unity Tools &amp; Shader Developer</title>
+<meta name="description" content="ANoor — Unity Asset Store publisher. Hyper-realistic shaders and tools: Lucid Water Pro, Hyper Realistic Eyes, HyperRealistic Jet Engine & After Burners.">
+<style>
+  :root {
+    --bg: #0a0c10;
+    --bg2: #0e1118;
+    --panel: #12161f;
+    --line: #1e2431;
+    --text: #e8ecf4;
+    --muted: #9aa4b5;
+    --accent: #4fc3f7;
+    --accent2: #ffb74d;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  img, video { display: block; max-width: 100%; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 28px;
+    background: rgba(10, 12, 16, .82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { font-weight: 700; letter-spacing: 2px; font-size: 18px; color: var(--text); }
+  .brand span { color: var(--accent); }
+  nav ul { display: flex; gap: 22px; list-style: none; }
+  nav ul a { color: var(--muted); font-size: 14px; transition: color .2s; }
+  nav ul a:hover { color: var(--text); }
+  .btn {
+    display: inline-block; padding: 10px 22px; border-radius: 6px;
+    background: var(--accent); color: #06222f; font-weight: 600; font-size: 14px;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(79,195,247,.35); }
+  .btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--text); }
+  .btn.ghost:hover { border-color: var(--accent); box-shadow: none; }
+
+  /* ---------- Hero ---------- */
+  header {
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    padding: 120px 24px 60px;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(79,195,247,.12), transparent),
+      radial-gradient(ellipse 60% 45% at 80% 90%, rgba(255,183,77,.08), transparent),
+      var(--bg);
+  }
+  header .tag {
+    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px;
+  }
+  header h1 { font-size: clamp(40px, 7vw, 84px); line-height: 1.05; letter-spacing: 6px; }
+  header h1 span { color: var(--accent); }
+  header p.sub {
+    max-width: 640px; margin: 22px auto 34px; color: var(--muted); font-size: 17px;
+  }
+  header .cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 90px 24px; max-width: 1200px; margin: 0 auto; }
+  section:nth-of-type(even) { background: var(--bg2); max-width: none; }
+  section:nth-of-type(even) .inner { max-width: 1200px; margin: 0 auto; }
+  .sec-head { margin-bottom: 40px; }
+  .sec-head .kicker {
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--accent2); margin-bottom: 8px;
+  }
+  .sec-head h2 { font-size: clamp(28px, 4vw, 44px); line-height: 1.15; }
+  .sec-head p { color: var(--muted); max-width: 720px; margin-top: 12px; }
+
+  .showcase {
+    display: grid; grid-template-columns: 1.25fr 1fr; gap: 18px;
+  }
+  .showcase .main-media {
+    border-radius: 10px; overflow: hidden; border: 1px solid var(--line);
+    background: #000;
+  }
+  .showcase .main-media video, .showcase .main-media img {
+    width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16/9;
+  }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .grid img {
+    width: 100%; aspect-ratio: 16/9; object-fit: cover;
+    border-radius: 8px; border: 1px solid var(--line);
+    transition: transform .25s, border-color .25s;
+  }
+  .grid img:hover { transform: scale(1.03); border-color: var(--accent); }
+
+  .features { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 30px; }
+  .features span {
+    font-size: 13px; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    text-align: center; padding: 60px 24px;
+    border-top: 1px solid var(--line); background: var(--bg2);
+  }
+  footer h3 { font-size: 26px; margin-bottom: 10px; letter-spacing: 3px; }
+  footer p { color: var(--muted); margin-bottom: 24px; font-size: 14px; }
+
+  @media (max-width: 860px) {
+    nav ul { display: none; }
+    .showcase { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">A<span>NOOR</span></div>
+  <ul>
+    <li><a href="#water">Water</a></li>
+    <li><a href="#eyes">Eyes</a></li>
+    <li><a href="#jet">Jet Engine</a></li>
+  </ul>
+  <a class="btn" href="https://assetstore.unity.com/publishers/70075" target="_blank" rel="noopener">Asset Store Profile</a>
+</nav>
+
+<header>
+  <div class="tag">Unity Asset Store Publisher</div>
+  <h1>A<span>NOOR</span></h1>
+  <p class="sub">Unity tools &amp; shader developer. Physically based, fully procedural, GPU-driven assets —
+  from infinite FFT oceans to refractive eyes and volumetric afterburners. No textures to ship, no compromises.</p>
+  <div class="cta">
+    <a class="btn" href="https://assetstore.unity.com/publishers/70075" target="_blank" rel="noopener">Browse the Asset Store</a>
+    <a class="btn ghost" href="#water">View the Assets</a>
+  </div>
+</header>
+
+<!-- ===================== LUCID WATER PRO ===================== -->
+<section id="water">
+  <div class="inner">
+    <div class="sec-head">
+      <div class="kicker">Shader · URP</div>
+      <h2>Lucid Water Pro</h2>
+      <p>AAA URP water &amp; infinite ocean. GPU FFT wave simulation (Tessendorf / JONSWAP spectrum),
+      physically based GGX shading, Beer–Lambert absorption, boat wakes shaped by the real hull,
+      buoyancy, caustics, waterfalls, seamless underwater — plus a built-in anime stylized mode.</p>
+    </div>
+    <div class="showcase">
+      <div class="main-media">
+        <video controls muted loop playsinline preload="metadata"
+               poster="assets/water/poster.jpg">
+          <source src="assets/water/trailer.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="grid">
+        <img loading="lazy" src="assets/water/screenshot_01.jpg" alt="Lucid Water Pro screenshot 1">
+        <img loading="lazy" src="assets/water/screenshot_04.jpg" alt="Lucid Water Pro screenshot 4">
+        <img loading="lazy" src="assets/water/screenshot_07.jpg" alt="Lucid Water Pro screenshot 7">
+        <img loading="lazy" src="assets/water/screenshot_10.jpg" alt="Lucid Water Pro screenshot 10">
+      </div>
+    </div>
+    <div class="features">
+      <span>Infinite FFT Ocean</span><span>Boat Wakes &amp; Buoyancy</span><span>Caustics &amp; Underwater</span>
+      <span>Waterfalls</span><span>Anime Stylized Mode</span><span>Setup in Under a Minute</span>
+    </div>
+    <a class="btn ghost" href="https://assetstore.unity.com/publishers/70075" target="_blank" rel="noopener">Get it on the Asset Store</a>
+  </div>
+</section>
+
+<!-- ===================== HYPER REALISTIC EYES ===================== -->
+<section id="eyes">
+  <div class="inner">
+    <div class="sec-head">
+      <div class="kicker">Shader · URP &amp; HDRP</div>
+      <h2>Hyper Realistic Eyes</h2>
+      <p>Real-time photoreal eye system. Snell's-law refractive cornea with true iris depth, fully procedural
+      iris and sclera, vessel-grown veins with Beer–Lambert absorption, light-reactive pupil, eyelid occlusion
+      baking — 16 presets, one draw call per eye.</p>
+    </div>
+    <div class="showcase">
+      <div class="main-media">
+        <video controls muted loop playsinline preload="metadata"
+               poster="assets/eyes/poster.jpg">
+          <source src="assets/eyes/trailer.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="grid">
+        <img loading="lazy" src="assets/eyes/blue_macro.jpg" alt="Blue eye macro render">
+        <img loading="lazy" src="assets/eyes/glow.jpg" alt="Glowing fantasy eye render">
+        <img loading="lazy" src="assets/eyes/cat_heterochromia.jpg" alt="Cat heterochromia eye render">
+        <img loading="lazy" src="assets/eyes/bloodshot.jpg" alt="Bloodshot eye render">
+      </div>
+    </div>
+    <div class="features">
+      <span>Refractive Cornea (IOR 1.376)</span><span>Procedural Iris &amp; Veins</span><span>Light-Reactive Pupil</span>
+      <span>16 Presets</span><span>URP + HDRP</span><span>1 Draw Call Per Eye</span>
+    </div>
+    <a class="btn ghost" href="https://assetstore.unity.com/publishers/70075" target="_blank" rel="noopener">Get it on the Asset Store</a>
+  </div>
+</section>
+
+<!-- ===================== JET ENGINE ===================== -->
+<section id="jet">
+  <div class="inner">
+    <div class="sec-head">
+      <div class="kicker">Shader · VFX · URP</div>
+      <h2>HyperRealistic Jet Engine &amp; After Burners</h2>
+      <p>Physically based jet engines you control from one line of code. Ray-marched volumetric afterburner
+      plume with black-body chromaticity, Mach diamonds, glowing engine interior with real parallax,
+      depth-aware heat distortion, engine simulation with spool-up lag — and a dedicated mobile tier.</p>
+    </div>
+    <div class="showcase">
+      <div class="main-media">
+        <video controls muted loop playsinline preload="metadata"
+               poster="assets/jet/hero_rear.jpg">
+          <source src="assets/jet/trailer.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="grid">
+        <img loading="lazy" src="assets/jet/hero_rear.jpg" alt="Afterburner rear view render">
+        <img loading="lazy" src="assets/jet/hero_interior.jpg" alt="Engine interior render">
+        <img loading="lazy" src="assets/jet/hero_formation.jpg" alt="Formation fly-by render">
+        <img loading="lazy" src="assets/jet/hero_scifi.jpg" alt="Sci-fi drive render">
+      </div>
+    </div>
+    <div class="features">
+      <span>Volumetric Afterburner Plume</span><span>Mach Diamonds</span><span>Heat Distortion</span>
+      <span>Engine Simulation</span><span>10 Ready-Made Looks</span><span>Mobile Tier</span>
+    </div>
+    <a class="btn ghost" href="https://assetstore.unity.com/publishers/70075" target="_blank" rel="noopener">Get it on the Asset Store</a>
+  </div>
+</section>
+
+<footer>
+  <h3>A<span style="color:var(--accent)">NOOR</span></h3>
+  <p>Unity tools &amp; shader developer — procedural, physically based, GPU-driven.</p>
+  <a class="btn" href="https://assetstore.unity.com/publishers/70075" target="_blank" rel="noopener">assetstore.unity.com/publishers/70075</a>
+</footer>
+
+</body>
+</html>
